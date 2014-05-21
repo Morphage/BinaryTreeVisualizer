@@ -1,0 +1,28 @@
+html, body {
+    margin:0;
+    padding:0;
+    font-family: "Lucida Grande", Verdana;
+    font-size: 0.9em;
+    text-align: center;
+    background-color:#1a1a1a;
+}
+
+#center-container {
+    height:550px;
+    position:absolute;
+    top:0;
+}
+
+#center-container {
+    width:600px;
+    background-color:#1a1a1a;
+    color:#ccc;
+}
+
+#infovis {
+    position:absolute;
+    width:600px;
+    height:550px;
+    margin:auto;
+    overflow:hidden;
+}
