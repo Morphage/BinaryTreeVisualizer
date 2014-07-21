@@ -22,6 +22,12 @@ The Binary Search Tree visualizer, coded in Javascript using the JIT library. Th
     
     -binary_tree.html
     
-    -.css and .js files (what do they do?)
+    -jit.js
+    
+    -Spacetree.css and base.css are modified versions of the original CSS files used for the Spacetree demo.
+     Links to the originals: 
+     http://philogb.github.io/jit/static/v20/Jit/Examples/css/base.css
+     http://philogb.github.io/jit/static/v20/Jit/Examples/css/Spacetree.css
+     
    
 How to use this visualizer? Write small tutorial TODO!!
