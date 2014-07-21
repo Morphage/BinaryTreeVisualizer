@@ -119,12 +119,11 @@ function init(json){
 	//remove null nodes
     st.graph.eachNode(function(node) {  
         if (node.name == "null") {
-		    st.op.removeNode(node.id, {  
-            type: 'fade:seq',
-            hideLabels: false,
-            transition: $jit.Trans.Quart.easeOut
+            st.op.removeNode(node.id, {  
+                type: 'fade:seq',
+                hideLabels: false,
+                transition: $jit.Trans.Quart.easeOut
             });
 		}
     });
-	
 }
