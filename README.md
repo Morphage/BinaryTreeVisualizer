@@ -32,9 +32,10 @@ The Binary Search Tree visualizer, coded in Javascript using the JIT library. Th
    
 ###TODO list   
 * Write small tutorial on how to use the visualizer.
-* Clean BST.java code and add documentation/comments.
+* Clean BST.java code and add documentation/comments...no need to use getters/setters for BSTNode, code is ugly.
 * Explain JSON format for binary tree + example.
 * Better layout for json string produced by toJSON().
 * Clean up javascript code, html code.
 * Add links to library and references used for this project.
 * Comment on known bugs, i.e. sometimes if node has only one parent, it won't be at the correct location of its parent.
+* Remove use of StringBuilder and just print the output out? or maybe two methods?
