@@ -5,7 +5,7 @@ BinaryTreeVisualizer
 ###Files
 The Java implementation resides in a single file called `BST.java`.
 ```java
-    BST<Integer> bst = new BST();
+    BST<Integer> bst = new BST<>();
     
     bst.insert(new Integer(34));
     bst.insert(new Integer(22));
