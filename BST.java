@@ -1,4 +1,7 @@
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Simplistic implementation of Binary Search Trees in Java. Designed as an API
  * to create binary search trees in the code, and to encode them in a JSON
@@ -56,6 +59,9 @@ public class BST<K extends Comparable<K>> {
                 current = current.left;
             } else if (key.compareTo(current.key) > 0) {
                 current = current.right;
+            } else {
+                /* Node is already in the tree. */
+                return;
             }
         }
 
@@ -73,149 +79,120 @@ public class BST<K extends Comparable<K>> {
     /**
      * Returns the space separated String, representing the in-order traversal
      * of the binary search tree.
-     * 
+     *
      * @return the in-order traversal of the binary search tree.
      */
-    public String inOrderTraversal() {
+    public String inorder() {
         StringBuilder sb = new StringBuilder();
-        inOrderTraversal(root, sb);
+        inorder(root, sb);
         return sb.toString();
     }
 
-    private void inOrderTraversal(BSTNode<K> root, StringBuilder sb) {
+    private void inorder(BSTNode<K> root, StringBuilder sb) {
         if (root == null) {
             return;
         }
 
-        inOrderTraversal(root.left, sb);
+        inorder(root.left, sb);
         sb.append(root.key).append(" ");
-        inOrderTraversal(root.right, sb);
+        inorder(root.right, sb);
     }
 
     /**
      * Returns the space separated String, representing the pre-order traversal
      * of the binary search tree.
-     * 
+     *
      * @return the pre-order traversal of the binary search tree.
      */
-    public String preOrderTraversal() {
+    public String preorder() {
         StringBuilder sb = new StringBuilder();
-        preOrderTraversal(root, sb);
+        preorder(root, sb);
         return sb.toString();
     }
 
-    private void preOrderTraversal(BSTNode<K> root, StringBuilder sb) {
+    private void preorder(BSTNode<K> root, StringBuilder sb) {
         if (root == null) {
             return;
         }
 
         sb.append(root.key).append(" ");
-        preOrderTraversal(root.left, sb);
-        preOrderTraversal(root.right, sb);
+        preorder(root.left, sb);
+        preorder(root.right, sb);
     }
 
     /**
      * Returns the space separated String, representing the post-order traversal
      * of the binary search tree.
-     * 
+     *
      * @return the post-order traversal of the binary search tree.
      */
-    public String postOrderTraversal() {
+    public String postorder() {
         StringBuilder sb = new StringBuilder();
-        postOrderTraversal(root, sb);
+        postorder(root, sb);
         return sb.toString();
     }
 
-    private void postOrderTraversal(BSTNode<K> root, StringBuilder sb) {
+    private void postorder(BSTNode<K> root, StringBuilder sb) {
         if (root == null) {
             return;
         }
 
-        postOrderTraversal(root.left, sb);
-        postOrderTraversal(root.right, sb);
+        postorder(root.left, sb);
+        postorder(root.right, sb);
         sb.append(root.key).append(" ");
     }
 
-    public String levelOrderTraversal() {
+    /**
+     * Returns the space separated String, representing the level-order
+     * traversal of the binary search tree. (Implementation based on
+     * breadth-first search)
+     *
+     * @return the level-order traversal of the binary search tree.
+     */
+    public String levelorder() {
         StringBuilder sb = new StringBuilder();
+        Queue<BSTNode<K>> queue = new LinkedList<>();
+        queue.add(root);
 
-        int height = height();
-        for (int i = 1; i <= height; i++) {
-            sb.append(givenLevelAsString(i)).append(" ");
+        while (!queue.isEmpty()) {
+            BSTNode<K> current = queue.remove();
+            sb.append(current.key).append(" ");
+
+            if (current.left != null) {
+                queue.add(current.left);
+            }
+
+            if (current.right != null) {
+                queue.add(current.right);
+            }
         }
 
-        return sb.toString();
+        return sb.toString().trim();
     }
 
-    public String givenLevelAsString(int level) {
+    /**
+     * Returns the space separated String, representing the level-order
+     * traversal of the binary search tree. The levels are numbered from 1, i.e.
+     * the root node of the binary search tree is at level 1.
+     *
+     * @param level the desired level in the binary search tree.
+     * @return the level-order traversal of the binary search tree.
+     */
+    public String levelToString(int level) {
         StringBuilder sb = new StringBuilder();
-        givenLevelAsString(root, level, sb);
+        levelToString(root, level, sb);
         return sb.toString();
     }
 
-    private void givenLevelAsString(BSTNode<K> root, int level, StringBuilder sb) {
-        if (root == null) {
-            sb.append("");
-        } else {
+    private void levelToString(BSTNode<K> root, int level, StringBuilder sb) {
+        if (root != null) {
             if (level == 1) {
                 sb.append(root.key).append(" ");
             } else if (level > 1) {
-                givenLevelAsString(root.left, level - 1, sb);
-                givenLevelAsString(root.right, level - 1, sb);
+                levelToString(root.left, level - 1, sb);
+                levelToString(root.right, level - 1, sb);
             }
         }
-    }
-
-    public void printAllLevels() {
-        for (int i = 1; i <= height(); i++) {
-            System.out.println("Level " + i + "= " + givenLevelAsString(i));
-        }
-    }
-
-    /**
-     * Returns the number of nodes in the binary search tree.
-     *
-     * @return the number of nodes in the binary search tree.
-     */
-    public int size() {
-        return size(root);
-    }
-
-    /**
-     * Returns the number of nodes of a particular subtree.
-     *
-     * @param root the root node of the subtree.
-     * @return the number of nodes in the subtree.
-     */
-    private int size(BSTNode<K> root) {
-        if (root == null) {
-            return 0;
-        }
-
-        return size(root.left) + 1 + size(root.right);
-    }
-
-    /**
-     * Returns the height of the binary search tree.
-     *
-     * @return the height of the binary search tree.
-     */
-    public int height() {
-        return height(root);
-    }
-
-    /**
-     * Returns the height of a particular subtree.
-     *
-     * @param root the root node of the subtree.
-     * @return the height of the subtree.
-     */
-    private int height(BSTNode<K> root) {
-        if (root == null) {
-            return 0;
-        }
-
-        return Math.max(height(root.left) + 1, height(root.right) + 1);
     }
 
     /**
@@ -271,11 +248,87 @@ public class BST<K extends Comparable<K>> {
         }
     }
 
+    /**
+     * Returns the number of nodes in the binary search tree.
+     *
+     * @return the number of nodes in the binary search tree.
+     */
+    public int size() {
+        return size(root);
+    }
+
+    /**
+     * Returns the number of nodes of a particular subtree.
+     *
+     * @param root the root node of the subtree.
+     * @return the number of nodes in the subtree.
+     */
+    private int size(BSTNode<K> root) {
+        if (root == null) {
+            return 0;
+        }
+
+        return size(root.left) + 1 + size(root.right);
+    }
+
+    /**
+     * Returns the height of the binary search tree.
+     *
+     * @return the height of the binary search tree.
+     */
+    public int height() {
+        return height(root);
+    }
+
+    /**
+     * Returns the height of a particular subtree.
+     *
+     * @param root the root node of the subtree.
+     * @return the height of the subtree.
+     */
+    private int height(BSTNode<K> root) {
+        if (root == null) {
+            return 0;
+        }
+
+        return Math.max(height(root.left) + 1, height(root.right) + 1);
+    }
+
+    /**
+     * Returns the minimum key of the binary search tree.
+     * 
+     * @return the key of the minimum element.
+     */
+    public K minimum() {
+        BSTNode<K> current = root;
+
+        while (current.left != null) {
+            current = current.left;
+        }
+
+        return current.key;
+    }
+    
+    /**
+     * Returns the maximum key of the binary search tree.
+     * 
+     * @return the key of the maximum element.
+     */
+    public K maximum() {
+        BSTNode<K> current = root;
+
+        while (current.right != null) {
+            current = current.right;
+        }
+
+        return current.key;
+    }
+
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
 
         bst.insert(30);
-        bst.insert(25);
+        /*bst.insert(25);
         bst.insert(35);
         bst.insert(20);
         bst.insert(26);
@@ -283,11 +336,13 @@ public class BST<K extends Comparable<K>> {
         bst.insert(27);
         bst.insert(33);
         bst.insert(38);
-        bst.insert(40);
+        bst.insert(40);*/
 
-        bst.printAllLevels();
-        System.out.println(bst.inOrderTraversal());
+        System.out.println(bst.inorder());
+        System.out.println(bst.levelorder());
         System.out.println(bst.toJSON());
-        System.out.println(bst.height());
+        System.out.println(bst.levelToString(3));
+        System.out.println(bst.minimum());
+        System.out.println(bst.maximum());
     }
 }

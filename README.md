@@ -1,6 +1,7 @@
 BinaryTreeVisualizer
 ====================
-**BinaryTreeVisualizer** consists of a Java implementation to create **Binary Search Trees** and some Javascript code to render the tree in a web page.
+**BinaryTreeVisualizer** consists of a Java implementation to create **Binary Search Trees** and some Javascript code to render these trees in a web page. I used this API
+in my final year project (jSCAPE) to provide a visual aid to help students answer exercises on binary search trees.
 
 ###Files
 The Java implementation resides in a single file called `BST.java`.
@@ -14,9 +15,10 @@ The Java implementation resides in a single file called `BST.java`.
     
     String bstJSON = bst.toJSON();
 ```
-The code snippet above shows the creation of a binary tree, how to insert a few elements and how to get the JSON representation of the tree, so that it can be used by the visualizer.
+The code snippet above shows the creation of a binary tree, how to insert a few elements and how to get the JSON representation of the tree, so that it can be used by the visualizer. Take
+a look at the rest of the API for other functions which can be called on binary search trees.
 
-The Binary Search Tree visualizer, coded in Javascript using the JIT library. The files for the visualizer are:
+The Binary Search Tree visualizer is programmed in Javascript using the JIT library. The files for the visualizer are:
 
     -binary_tree.js
     
