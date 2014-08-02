@@ -205,46 +205,30 @@ public class BST<K extends Comparable<K>> {
         toJSON(root, sb);
         return sb.toString() + ";";
     }
-
+    
     private void toJSON(BSTNode<K> root, StringBuilder sb) {
         if ((root.left != null) || (root.right != null)) {
-            sb.append("{\n" + "        id: \"")
-                    .append(root.key).append("00")
-                    .append("\",\n" + "        name: \"")
-                    .append(root.key)
-                    .append("\",\n")
-                    .append("        data: {},\n")
-                    .append("        children: [");
+            sb.append("{id: \"").append(root.key).append("00")
+              .append("\", name: \"").append(root.key)
+              .append("\", data: {}, children: [");
             if (root.left != null) {
                 toJSON(root.left, sb);
                 sb.append(", ");
             } else {
-                sb.append("{\n" + "        id: \"")
-                        .append((Integer) root.key - 1).append("90")
-                        .append("\",\n" + "        name: \"null")
-                        .append("\",\n")
-                        .append("        data: {},\n")
-                        .append("        children: []},");
+                sb.append("{id: \"").append((Integer) root.key - 1).append("90")
+                  .append("\", name: \"null\", data: {}, children: []}, ");
             }
             if (root.right != null) {
                 toJSON(root.right, sb);
             } else {
-                sb.append("{\n" + "        id: \"")
-                        .append((Integer) root.key + 1).append("90")
-                        .append("\",\n" + "        name: \"null")
-                        .append("\",\n")
-                        .append("        data: {},\n")
-                        .append("        children: []}");
+                sb.append("id: \"").append((Integer) root.key + 1).append("90")
+                  .append("\", name: \"null\", data: {}, children: []}");
             }
             sb.append("]}");
         } else {
-            sb.append("{\n" + "        id: \"")
-                    .append(root.key).append("00")
-                    .append("\",\n" + "        name: \"")
-                    .append(root.key)
-                    .append("\",\n")
-                    .append("        data: {},\n")
-                    .append("        children: []\n    }");
+            sb.append("{id: \"").append(root.key).append("00")
+              .append("\", name: \"").append(root.key)
+              .append("\", data: {}, children: []}");
         }
     }
 
@@ -328,7 +312,7 @@ public class BST<K extends Comparable<K>> {
         BST<Integer> bst = new BST<>();
 
         bst.insert(30);
-        /*bst.insert(25);
+        bst.insert(25);
         bst.insert(35);
         bst.insert(20);
         bst.insert(26);
@@ -336,7 +320,7 @@ public class BST<K extends Comparable<K>> {
         bst.insert(27);
         bst.insert(33);
         bst.insert(38);
-        bst.insert(40);*/
+        bst.insert(40);
 
         System.out.println(bst.inorder());
         System.out.println(bst.levelorder());

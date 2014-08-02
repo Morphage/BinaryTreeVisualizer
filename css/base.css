@@ -4,7 +4,7 @@ html, body {
     font-family: "Lucida Grande", Verdana;
     font-size: 0.9em;
     text-align: center;
-    background-color:#1a1a1a;
+    /*background-color:#1a1a1a;*/
 }
 
 #center-container {
@@ -14,14 +14,14 @@ html, body {
 }
 
 #center-container {
-    width:600px;
+    width:800px;
     background-color:#1a1a1a;
     color:#ccc;
 }
 
 #infovis {
     position:absolute;
-    width:600px;
+    width:800px;
     height:550px;
     margin:auto;
     overflow:hidden;

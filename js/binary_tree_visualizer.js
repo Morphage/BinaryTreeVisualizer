@@ -15,29 +15,34 @@ var labelType, useGradients, nativeTextSupport, animate;
   animate = !(iStuff || !nativeCanvasSupport);
 })();
 
-function init(json){
-    //init Spacetree
-    //Create a new ST instance
+function visualize(binary_tree_json){
+    // Initialize Spacetree
+    // Create a new ST instance
     var st = new $jit.ST({
-        //id of viz container element
+        /* id of viz container element */
         injectInto: 'infovis',
-        //set duration for the animation
+
+        /* Set duration for the animation. */
         duration: 200,
 		orientation: 'top',
-        //set animation transition type
+
+        /* Set animation transition type. */
         transition: $jit.Trans.Quart.easeInOut,
-        //set distance between node and its children
+
+        /* Set distance between node and its children. */
         levelDistance: 50,
 		levelsToShow: 8,
 		constrained: false,
-        //enable panning
+
+        /* Enable panning. */
         Navigation: {
           enable:true,
           panning:true
         },
-        //set node and edge styles
-        //set overridable=true for styling individual
-        //nodes or edges
+
+        /* Set node and edge styles
+           Set overridable = true for styling individual
+           Nodes or edges */
         Node: {
             height: 20,
             width: 60,
@@ -52,9 +57,9 @@ function init(json){
             overridable: true
         },
         
-        //This method is called on DOM label creation.
-        //Use this method to add event handlers and styles to
-        //your node.
+        // This method is called on DOM label creation.
+        // Use this method to add event handlers and styles to
+        // your node.
         onCreateLabel: function(label, node){
             label.id = node.id;            
             label.innerHTML = node.name;
@@ -69,11 +74,11 @@ function init(json){
             style.paddingTop = '3px';
         },
         
-        //This method is called right before plotting
-        //a node. It's useful for changing an individual node
-        //style properties before plotting it.
-        //The data properties prefixed with a dollar
-        //sign will override the global node style properties.
+        // This method is called right before plotting
+        // a node. It's useful for changing an individual node
+        // style properties before plotting it.
+        // The data properties prefixed with a dollar
+        // sign will override the global node style properties.
         onBeforePlotNode: function(node){
             //add some color to the nodes in the path between the
             //root node and the selected node.
@@ -110,13 +115,17 @@ function init(json){
             }
         }
     });
-    //load json data
-    st.loadJSON(json);
-    //compute node positions and layout
+    
+    /* Load JSON data. */
+    st.loadJSON(binary_tree_json);
+
+    /* Compute node positions and layout. */
     st.compute();
-    //emulate a click on the root node.
+
+    /* Emulate a click on the root node to expand it. */
     st.onClick(st.root);
-	//remove null nodes
+
+	/* Remove null nodes from the visualization. */
     st.graph.eachNode(function(node) {  
         if (node.name == "null") {
             st.op.removeNode(node.id, {  

@@ -26,18 +26,17 @@ The Binary Search Tree visualizer is programmed in Javascript using the JIT libr
     
     -jit.js
     
-    -Spacetree.css and base.css are modified versions of the original CSS files used for the Spacetree demo.
+    -base.css are modified versions of the original CSS files used for the Spacetree demo.
      Links to the originals: 
      http://philogb.github.io/jit/static/v20/Jit/Examples/css/base.css
-     http://philogb.github.io/jit/static/v20/Jit/Examples/css/Spacetree.css
-     
+
+####Known bugs
+For parent nodes which only have one child, sometimes the visualizer won't place the child node in the appropriate location (i.e. to the left or to the right of the parent node). Instead,
+the child node is placed directly under the parent node. The cause of this bug has to do with how "null" nodes are removed from the visualization. Depending on whether the "null" nodes
+are removed before or after the other nodes have been rendered, this bug can occur. (GIVE BETTER EXPLANATION)
    
 ###TODO list   
 * Write small tutorial on how to use the visualizer.
-* Clean BST.java code and add documentation/comments...no need to use getters/setters for BSTNode, code is ugly.
 * Explain JSON format for binary tree + example.
-* Better layout for json string produced by toJSON().
 * Clean up javascript code, html code.
 * Add links to library and references used for this project.
-* Comment on known bugs, i.e. sometimes if node has only one parent, it won't be at the correct location of its parent.
-* Remove use of StringBuilder and just print the output out? or maybe two methods?

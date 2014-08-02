@@ -3,60 +3,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<!-- CSS Files -->
+<!-- CSS File -->
 <link type="text/css" href="../css/base.css" rel="stylesheet" />
-<link type="text/css" href="../css/Spacetree.css" rel="stylesheet" />
 
 <!--[if IE]><script language="javascript" type="text/javascript" src="../../Extras/excanvas.js"></script><![endif]-->
 
 <!-- JIT Library File -->
 <script language="javascript" type="text/javascript" src="../js/jit.js"></script>
 
-<!-- Example File -->
-<script language="javascript" type="text/javascript" src="../js/binary_tree.js"></script>
+<!-- BinaryTreeVisualizer File -->
+<script language="javascript" type="text/javascript" src="../js/binary_tree_visualizer.js"></script>
 <script language="javascript" type="text/javascript">
 <!-- Example Binary tree ->
-var json = {
-        id: "26",
-        name: "26",
-        data: {},
-        children: [{
-            id: "8",
-            name: "8",
-            data: {},
-            children: [{
-                id: "4",
-                name: "4",
-                data: {},
-                children: []
-            }, {
-                id: "24",
-                name: "24",
-                data: {},
-                children: []
-				}]
-        }, {
-            id: "42",
-            name: "42",
-            data: {},
-            children: [{
-                id: "28",
-                name: "28",
-                data: {},
-                children: []
-            }, {
-			    id: "43",
-                name: "43",
-                data: {},
-                children: []
-				}]
-        }
-    ]};	
+var binary_tree_json = {id: "3000", name: "30", data: {}, children: [{id: "2500", name: "25", data: {}, children: [{id: "2000", name: "20", data: {}, children: [{id: "1990", name: "null", data: {}, children: []}, {id: "2100", name: "21", data: {}, children: []}]}, {id: "2600", name: "26", data: {}, children: [{id: "2590", name: "null", data: {}, children: []}, {id: "2700", name: "27", data: {}, children: []}]}]}, {id: "3500", name: "35", data: {}, children: [{id: "3300", name: "33", data: {}, children: []}, {id: "3800", name: "38", data: {}, children: [{id: "3790", name: "null", data: {}, children: []}, {id: "4000", name: "40", data: {}, children: []}]}]}]};
 </script>
 
 </head>
 
-<body onload="init(json);">
+<body onload="visualize(binary_tree_json);">
 
 <div id="center-container">
     <div id="infovis"></div>    
