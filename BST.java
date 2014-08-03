@@ -23,7 +23,7 @@ public class BST<K extends Comparable<K>> {
      *
      * @param <K> key type of the binary tree.
      */
-    private class BSTNode<K> {
+    public class BSTNode<K> {
 
         public K key;
         public BSTNode<K> left;
@@ -89,13 +89,11 @@ public class BST<K extends Comparable<K>> {
     }
 
     private void inorder(BSTNode<K> root, StringBuilder sb) {
-        if (root == null) {
-            return;
+        if (root != null) {
+            inorder(root.left, sb);
+            sb.append(root.key).append(" ");
+            inorder(root.right, sb);
         }
-
-        inorder(root.left, sb);
-        sb.append(root.key).append(" ");
-        inorder(root.right, sb);
     }
 
     /**
@@ -111,13 +109,11 @@ public class BST<K extends Comparable<K>> {
     }
 
     private void preorder(BSTNode<K> root, StringBuilder sb) {
-        if (root == null) {
-            return;
+        if (root != null) {
+            sb.append(root.key).append(" ");
+            preorder(root.left, sb);
+            preorder(root.right, sb);
         }
-
-        sb.append(root.key).append(" ");
-        preorder(root.left, sb);
-        preorder(root.right, sb);
     }
 
     /**
@@ -133,13 +129,11 @@ public class BST<K extends Comparable<K>> {
     }
 
     private void postorder(BSTNode<K> root, StringBuilder sb) {
-        if (root == null) {
-            return;
+        if (root != null) {
+            postorder(root.left, sb);
+            postorder(root.right, sb);
+            sb.append(root.key).append(" ");
         }
-
-        postorder(root.left, sb);
-        postorder(root.right, sb);
-        sb.append(root.key).append(" ");
     }
 
     /**
@@ -205,30 +199,30 @@ public class BST<K extends Comparable<K>> {
         toJSON(root, sb);
         return sb.toString() + ";";
     }
-    
+
     private void toJSON(BSTNode<K> root, StringBuilder sb) {
         if ((root.left != null) || (root.right != null)) {
             sb.append("{id: \"").append(root.key).append("00")
-              .append("\", name: \"").append(root.key)
-              .append("\", data: {}, children: [");
+                    .append("\", name: \"").append(root.key)
+                    .append("\", data: {}, children: [");
             if (root.left != null) {
                 toJSON(root.left, sb);
                 sb.append(", ");
             } else {
                 sb.append("{id: \"").append((Integer) root.key - 1).append("90")
-                  .append("\", name: \"null\", data: {}, children: []}, ");
+                        .append("\", name: \"null\", data: {}, children: []}, ");
             }
             if (root.right != null) {
                 toJSON(root.right, sb);
             } else {
                 sb.append("id: \"").append((Integer) root.key + 1).append("90")
-                  .append("\", name: \"null\", data: {}, children: []}");
+                        .append("\", name: \"null\", data: {}, children: []}");
             }
             sb.append("]}");
         } else {
             sb.append("{id: \"").append(root.key).append("00")
-              .append("\", name: \"").append(root.key)
-              .append("\", data: {}, children: []}");
+                    .append("\", name: \"").append(root.key)
+                    .append("\", data: {}, children: []}");
         }
     }
 
@@ -280,32 +274,32 @@ public class BST<K extends Comparable<K>> {
 
     /**
      * Returns the minimum key of the binary search tree.
-     * 
+     *
      * @return the key of the minimum element.
      */
-    public K minimum() {
+    public BSTNode<K> minimum() {
         BSTNode<K> current = root;
 
         while (current.left != null) {
             current = current.left;
         }
 
-        return current.key;
+        return current;
     }
-    
+
     /**
      * Returns the maximum key of the binary search tree.
-     * 
+     *
      * @return the key of the maximum element.
      */
-    public K maximum() {
+    public BSTNode<K> maximum() {
         BSTNode<K> current = root;
 
         while (current.right != null) {
             current = current.right;
         }
 
-        return current.key;
+        return current;
     }
 
     public static void main(String[] args) {
@@ -326,7 +320,7 @@ public class BST<K extends Comparable<K>> {
         System.out.println(bst.levelorder());
         System.out.println(bst.toJSON());
         System.out.println(bst.levelToString(3));
-        System.out.println(bst.minimum());
-        System.out.println(bst.maximum());
+        System.out.println(bst.minimum().key);
+        System.out.println(bst.maximum().key);
     }
 }
