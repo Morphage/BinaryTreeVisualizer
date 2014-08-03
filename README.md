@@ -6,12 +6,12 @@ in my final year project (jSCAPE) to provide a visual aid to help students answe
 ###Files
 The Java implementation resides in a single file called `BST.java`.
 ```java
-    BST<Integer> bst = new BST();
+    BST<Integer> bst = new BST<>();
     
-    bst.insert(new Integer(34));
-    bst.insert(new Integer(22));
-    bst.insert(new Integer(28));
-    bst.insert(new Integer(56));
+    bst.insert(34);
+    bst.insert(22);
+    bst.insert(28);
+    bst.insert(56);
     
     String bstJSON = bst.toJSON();
 ```
