@@ -1,18 +1,21 @@
 var labelType, useGradients, nativeTextSupport, animate;
 
 (function() {
-  var ua = navigator.userAgent,
-      iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
-      typeOfCanvas = typeof HTMLCanvasElement,
-      nativeCanvasSupport = (typeOfCanvas == 'object' || typeOfCanvas == 'function'),
-      textSupport = nativeCanvasSupport 
-        && (typeof document.createElement('canvas').getContext('2d').fillText == 'function');
-  //I'm setting this based on the fact that ExCanvas provides text support for IE
-  //and that as of today iPhone/iPad current text support is lame
-  labelType = (!nativeCanvasSupport || (textSupport && !iStuff))? 'Native' : 'HTML';
-  nativeTextSupport = labelType == 'Native';
-  useGradients = nativeCanvasSupport;
-  animate = !(iStuff || !nativeCanvasSupport);
+    var ua = navigator.userAgent,
+        iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
+        typeOfCanvas = typeof HTMLCanvasElement,
+        nativeCanvasSupport = (typeOfCanvas == 'object' || typeOfCanvas == 'function'),
+        textSupport = nativeCanvasSupport 
+            && (typeof document.createElement('canvas').getContext('2d').fillText == 'function');
+
+    /* 
+     * I'm setting this based on the fact that ExCanvas provides text support for IE
+     * and that as of today iPhone/iPad current text support is lame.
+     */
+    labelType = (!nativeCanvasSupport || (textSupport && !iStuff))? 'Native' : 'HTML';
+    nativeTextSupport = labelType == 'Native';
+    useGradients = nativeCanvasSupport;
+    animate = !(iStuff || !nativeCanvasSupport);
 })();
 
 function visualize(binary_tree_json){
@@ -99,11 +102,10 @@ function visualize(binary_tree_json){
             }
         },
         
-        //This method is called right before plotting
-        //an edge. It's useful for changing an individual edge
-        //style properties before plotting it.
-        //Edge data proprties prefixed with a dollar sign will
-        //override the Edge global style properties.
+        /* This method is called right before plotting an edge. It's useful for changing an
+         * individual edge style properties before plotting it. Edge data properties prefixed
+         * with a dollar sign will override the Edge global style properties.
+         */
         onBeforePlotLine: function(adj){
             if (adj.nodeFrom.selected && adj.nodeTo.selected) {
                 adj.data.$color = "#eed";
