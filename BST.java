@@ -26,6 +26,7 @@ public class BST<K extends Comparable<K>> {
     public class BSTNode<K> {
 
         public K key;
+        public BSTNode<K> parent;
         public BSTNode<K> left;
         public BSTNode<K> right;
 
@@ -43,7 +44,8 @@ public class BST<K extends Comparable<K>> {
     /**
      * Inserts a new node in the tree using an iterative approach. The node will
      * be inserted in the appropriate position to maintain the characteristic
-     * property of binary search trees.
+     * property of binary search trees. If the node trying to be inserted is
+     * already present in the tree then nothing else will be done.
      *
      * @param key the key of the node to insert.
      */
@@ -65,6 +67,8 @@ public class BST<K extends Comparable<K>> {
             }
         }
 
+        newNode.parent = parent;
+
         if (parent == null) {
             root = newNode;
         } else {
@@ -74,6 +78,26 @@ public class BST<K extends Comparable<K>> {
                 parent.right = newNode;
             }
         }
+    }
+
+    /**
+     * Searches for a node in the binary search tree.
+     *
+     * @param key the key to search for.
+     * @return the node with the given key or null if not found.
+     */
+    public BSTNode<K> search(K key) {
+        BSTNode<K> current = root;
+
+        while (current != null && key.compareTo(current.key) != 0) {
+            if (key.compareTo(current.key) > 0) {
+                current = current.right;
+            } else {
+                current = current.left;
+            }
+        }
+
+        return current;
     }
 
     /**
@@ -241,7 +265,7 @@ public class BST<K extends Comparable<K>> {
      * @param root the root node of the subtree.
      * @return the number of nodes in the subtree.
      */
-    private int size(BSTNode<K> root) {
+    public int size(BSTNode<K> root) {
         if (root == null) {
             return 0;
         }
@@ -264,7 +288,7 @@ public class BST<K extends Comparable<K>> {
      * @param root the root node of the subtree.
      * @return the height of the subtree.
      */
-    private int height(BSTNode<K> root) {
+    public int height(BSTNode<K> root) {
         if (root == null) {
             return 0;
         }
@@ -273,11 +297,12 @@ public class BST<K extends Comparable<K>> {
     }
 
     /**
-     * Returns the minimum key of the binary search tree.
+     * Returns the minimum key of the subtree rooted at root.
      *
+     * @param root the root of the subtree.
      * @return the key of the minimum element.
      */
-    public BSTNode<K> minimum() {
+    public BSTNode<K> minimum(BSTNode<K> root) {
         BSTNode<K> current = root;
 
         while (current.left != null) {
@@ -288,11 +313,12 @@ public class BST<K extends Comparable<K>> {
     }
 
     /**
-     * Returns the maximum key of the binary search tree.
+     * Returns the minimum key of the subtree rooted at root.
      *
+     * @param root the root of the subtree.
      * @return the key of the maximum element.
      */
-    public BSTNode<K> maximum() {
+    public BSTNode<K> maximum(BSTNode<K> root) {
         BSTNode<K> current = root;
 
         while (current.right != null) {
@@ -300,6 +326,46 @@ public class BST<K extends Comparable<K>> {
         }
 
         return current;
+    }
+
+    /**
+     * Finds the successor of a node.
+     *
+     * @param x the node to find the successor of.
+     * @return the successor of node x.
+     */
+    public BSTNode<K> successor(BSTNode<K> x) {
+        if (x.right != null) {
+            return minimum(x.right);
+        }
+
+        BSTNode<K> parent = x.parent;
+        while (parent != null && parent.right == x) {
+            x = parent;
+            parent = x.parent;
+        }
+
+        return parent;
+    }
+
+    /**
+     * Finds the predecessor of a node.
+     *
+     * @param x the node to find the predecessor of.
+     * @return the predecessor of node x.
+     */
+    public BSTNode<K> predecessor(BSTNode<K> x) {
+        if (x.left != null) {
+            return maximum(x.left);
+        }
+
+        BSTNode<K> parent = x.parent;
+        while (parent != null && parent.left == x) {
+            x = parent;
+            parent = x.parent;
+        }
+
+        return parent;
     }
 
     public static void main(String[] args) {
@@ -320,7 +386,8 @@ public class BST<K extends Comparable<K>> {
         System.out.println(bst.levelorder());
         System.out.println(bst.toJSON());
         System.out.println(bst.levelToString(3));
-        System.out.println(bst.minimum().key);
-        System.out.println(bst.maximum().key);
+        System.out.println(bst.minimum(bst.root).key);
+        System.out.println(bst.maximum(bst.root).key);
+        System.out.println(bst.successor(bst.root).key);
     }
 }
