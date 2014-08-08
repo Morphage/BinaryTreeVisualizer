@@ -48,32 +48,43 @@ people to create their own trees manually, the JSON format is shown and explaine
      id: "2200",
      name: "22",
      data: {},
-     children: [{
+     children: [
+        {
          id: "1300",
          name: "13",
          data: {},
-         children: []},
-             {id: "2390",
-              name: "null",
-              data: {},
-              children: []}
+         children: []
+        },
+        {
+         id: "2390",
+         name: "null",
+         data: {},
+         children: []}
         ]
     }, 
-    {id: "4400",
+    {
+     id: "4400",
      name: "44",
      data: {},
-     children: []}
+     children: []
+    }
     ]
 };
 ```
+
+"null" nodes are necessary so that the visualizer can place single child nodes in the correct location, i.e. to the left or right of its parent. Without these "null" nodes, the child
+node would be placed directly under the parent node, thus the binary tree wouldn't have the expected layout. At the end of the render function, these "null" nodes are removed from
+the visualization, and since the other nodes have their location set, then this operation doesn't affect the rest of the tree. However, there is a small bug which very rarely where
+single child nodes won't be in the correct location. (see **Known Bugs**).
 
 Try to organize it so that the json code is on the left and the corresponding binary tree is on the right. If this isn't possible using layout, then make an image of the code
 and the tree side by side.
 
 ####Known bugs
-For parent nodes which only have one child, sometimes the visualizer won't place the child node in the appropriate location (i.e. to the left or to the right of the parent node). Instead,
-the child node is placed directly under the parent node. The cause of this bug has to do with how "null" nodes are removed from the visualization. Depending on whether the "null" nodes
-are removed before or after the other nodes have been rendered, this bug can occur. (GIVE BETTER EXPLANATION)
+*For parent nodes which only have one child, sometimes the visualizer won't place the child node in the appropriate location (i.e. to the left or to the right of the parent node). Instead,
+the child node is placed directly under the parent node. The cause of this bug has to do with the usage of "null" nodes and when they are removed. Recall that "null" nodes are used
+to establish the location of single child nodes. Sometimes these "null" nodes are removed before the single child nodes have an established location, thus the renderer will default
+to placing these nodes directly under the parent node.
 
 ###References
 -http://philogb.github.io/jit/static/v20/Jit/Examples/css/base.css
