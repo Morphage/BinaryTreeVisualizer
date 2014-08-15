@@ -43,38 +43,6 @@ people to create their own trees manually, without using the Java implementation
 
 ![BST Representation](https://github.com/Morphage/BinaryTreeVisualizer/blob/master/json_representation.png)
 
-```json
-{id: "3700",
- name: "37",
- data: {},
- children: [{
-     id: "2200",
-     name: "22",
-     data: {},
-     children: [
-        {
-         id: "1300",
-         name: "13",
-         data: {},
-         children: []
-        },
-        {
-         id: "2390",
-         name: "null",
-         data: {},
-         children: []}
-        ]
-    }, 
-    {
-     id: "4400",
-     name: "44",
-     data: {},
-     children: []
-    }
-    ]
-};
-```
-
 "null" nodes are necessary so that the visualizer can place single child nodes in the correct location, i.e. to the left or right of its parent. Without these "null" nodes, the child
 node would be placed directly under the parent node, thus the binary tree wouldn't have the expected layout. At the end of the render function, these "null" nodes are removed from
 the visualization, and since the other nodes have their location set, then this operation doesn't affect the rest of the tree. However, there is a small bug which very rarely where
