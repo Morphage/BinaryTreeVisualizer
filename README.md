@@ -41,6 +41,8 @@ and more examples of how to customize visualizations, animations, colors, etc...
 Using the API's <code>toJSON()</code> function makes it a lot easier to generate the JSON representation used by the BinaryTreeVisualizer to render the trees. However, to allow
 people to create their own trees manually, without using the Java implementation, the JSON format is shown and explained below:
 
+![BST Representation](https://github.com/Morphage/BinaryTreeVisualizer/blob/master/json_representation.png)
+
 ```json
 {id: "3700",
  name: "37",
