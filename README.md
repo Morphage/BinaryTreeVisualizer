@@ -6,18 +6,6 @@ I used this API in my final year project (jSCAPE) to provide a visual aid to hel
 
 ###Files
 The Java implementation resides in a single file called `BST.java`.
-```java
-    BST<Integer> bst = new BST<>();
-    
-    bst.insert(34);
-    bst.insert(22);
-    bst.insert(28);
-    bst.insert(56);
-    
-    String bstJSON = bst.toJSON();
-```
-The code snippet above shows the creation of a binary tree, how to insert a few elements and how to get the JSON representation of the tree, so that it can be used by the visualizer. Take
-a look at the rest of the API for other functions which can be called on binary search trees.
 
 In order to visualize the binary trees, you must use the BinaryTreeVisualizer. It is programmed in Javascript using the JIT library. The files for the visualizer are:
 
@@ -32,6 +20,21 @@ In order to visualize the binary trees, you must use the BinaryTreeVisualizer. I
      http://philogb.github.io/jit/static/v20/Jit/Examples/css/base.css
 
 ###How to use
+
+```java
+    BST<Integer> bst = new BST<>();
+    
+    bst.insert(34);
+    bst.insert(22);
+    bst.insert(28);
+    bst.insert(56);
+    
+    String bstJSON = bst.toJSON();
+```
+The code snippet above shows the creation of a binary tree, how to insert a few elements and how to get the JSON representation of the tree, so that it can be used by the visualizer. Take
+a look at the rest of the API for other functions which can be called on binary search trees.
+
+
 The function responsible for rendering the tree is called <code>visualize(binary_tree_json)</code>, and can be found in **binary_tree.js**. The function takes the JSON representation
 of the binary tree as a parameter. Call this function in the html file, for instance, <body onload="visualize(binary_tree_json);">. This will render the binary tree in the web page
 at loading time. To customize the BinaryTreeVisualizer, take a look at the References section, which gives links to the Javascript InfoVis Toolkit, where you can find tutorials
