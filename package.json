@@ -1,0 +1,19 @@
+{
+  "name": "binarytreevisualizer",
+  "version": "1.0.0",
+  "description": "BinaryTreeVisualizer ==================== **BinaryTreeVisualizer** consists of a Java implementation to create **Binary Search Trees** and some Javascript code to render these trees in a web page. This API is most useful for applications which have a Javascript capable web-component, with the Java code in the back-end to construct the binary trees, created by user input for instance. I used this API in my final year project (jSCAPE) to provide a visual aid to help students answer exercises on binary search trees.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hegdeashwin/BinaryTreeVisualizer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hegdeashwin/BinaryTreeVisualizer/issues"
+  },
+  "homepage": "https://github.com/hegdeashwin/BinaryTreeVisualizer#readme"
+}
